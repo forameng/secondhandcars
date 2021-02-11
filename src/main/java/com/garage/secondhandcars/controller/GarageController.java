@@ -2,22 +2,20 @@ package com.garage.secondhandcars.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.garage.secondhandcars.dto.Warehouse;
 import com.garage.secondhandcars.service.GarageService;
 
 @RestController
 public class GarageController {
 	
-	private final GarageService garageService;
+	@Autowired
+	private  GarageService garageService;
 	
-	public GarageController(GarageService garageService){
-		this.garageService=garageService;
-	}
 	
 	@GetMapping("/warehouse")
 	 public ResponseEntity<List<Warehouse>> getWarehouseDetails(){
@@ -27,5 +25,7 @@ public class GarageController {
 		responseEntity=new ResponseEntity<>(warehouseList,HttpStatus.OK);
 		return responseEntity;
 	}
+	
+	
 
 }
