@@ -15,9 +15,11 @@ CREATE TABLE warehouse (
 );
 
 CREATE TABLE cart (
-   car_id INT NOT NULL,
+  car_id INT PRIMARY KEY,
   car_make VARCHAR(250) NOT NULL,
   car_model VARCHAR(250) NOT NULL,
   car_year INT NOT NULL,
   car_price double NOT NULL, 
+  licensed boolean NOT NULL,
+  car_date_added  VARCHAR(250) NOT NULL
 );

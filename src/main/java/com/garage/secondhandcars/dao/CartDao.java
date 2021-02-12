@@ -1,26 +1,14 @@
 package com.garage.secondhandcars.dao;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-
 @Entity
-@Table(name="warehouse")
-public class WarehouseDao {
-	@Id
-    @GeneratedValue
-	private int warehouse_id;
-	@Column(name="name") 
-	private String name;
-	@Column(name="location_lat")  
-	private String locationLat;
-	@Column(name="location_long")  
-	private String locationLong;
-	@Column(name="car_location") 
-	private String carLocation;
-	@Column(name="car_id")  
+@Table(name="cart")
+public class CartDao {
+	
+	@Id 
 	private int carId;
 	@Column(name="car_make") 
 	private String carMake;
@@ -35,36 +23,7 @@ public class WarehouseDao {
 	@Column(name="car_date_added")  
 	private String carDateAdded;
 	
-	public int getWarehouse_id() {
-		return warehouse_id;
-	}
-	public void setWarehouse_id(int warehouse_id) {
-		this.warehouse_id = warehouse_id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getLocationLat() {
-		return locationLat;
-	}
-	public void setLocationLat(String locationLat) {
-		this.locationLat = locationLat;
-	}
-	public String getLocationLong() {
-		return locationLong;
-	}
-	public void setLocationLong(String locationLong) {
-		this.locationLong = locationLong;
-	}
-	public String getCarLocation() {
-		return carLocation;
-	}
-	public void setCarLocation(String carLocation) {
-		this.carLocation = carLocation;
-	}
+
 	public int getCarId() {
 		return carId;
 	}
@@ -114,14 +73,8 @@ public class WarehouseDao {
 	    append("\ncarId "+ carId).
 		append(" carModel"+ carModel).
 	     append(" car_date_added "+ carDateAdded).
-	     append(" carPrice "+ carPrice).
-	       append(" name "+ name).
-	       append(" locationLat "+ locationLat).
-	       append(" location_long "+ locationLong).
-	       append(" location_long "+ locationLong).
-	       	       
+	     append(" carPrice "+ carPrice).	       	       
 	       toString(); 
 	}
-	
 
 }
