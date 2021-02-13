@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 @Entity
 @Table(name="cart")
 public class CartDao {
@@ -23,49 +27,6 @@ public class CartDao {
 	@Column(name="car_date_added")  
 	private String carDateAdded;
 	
-
-	public int getCarId() {
-		return carId;
-	}
-	public void setCarId(int carId) {
-		this.carId = carId;
-	}
-	public String getCarMake() {
-		return carMake;
-	}
-	public void setCarMake(String carMake) {
-		this.carMake = carMake;
-	}
-	public String getCarModel() {
-		return carModel;
-	}
-	public void setCarModel(String carModel) {
-		this.carModel = carModel;
-	}
-	public int getCarYear() {
-		return carYear;
-	}
-	public void setCarYear(int carYear) {
-		this.carYear = carYear;
-	}
-	public double getCarPrice() {
-		return carPrice;
-	}
-	public void setCarPrice(double carPrice) {
-		this.carPrice = carPrice;
-	}
-	public boolean isLicensed() {
-		return licensed;
-	}
-	public void setLicensed(boolean licensed) {
-		this.licensed = licensed;
-	}
-	public String getCarDateAdded() {
-		return carDateAdded;
-	}
-	public void setCarDateAdded(String carDateAdded) {
-		this.carDateAdded = carDateAdded;
-	}
 	
 	@Override
 	public String toString() {

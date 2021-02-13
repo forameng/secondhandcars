@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.garage.secondhandcars.dao.CartDao;
 import com.garage.secondhandcars.dao.WarehouseDao;
 import com.garage.secondhandcars.dto.Cars;
@@ -19,10 +17,15 @@ import com.garage.secondhandcars.repository.WarehouseRepository;
 
 @Service
 public class GarageService {
-	@Autowired
+	
     WarehouseRepository warehouserepository;
-	@Autowired
 	CartRepository cartRepository;
+	
+	public GarageService(WarehouseRepository warehouserepository,CartRepository cartRepository){
+		this.warehouserepository=warehouserepository;
+		this.cartRepository=cartRepository;
+	}
+	
 	
 	public List<Warehouse> getWarehouseDetails()
 	{	
