@@ -15,24 +15,22 @@ import com.garage.secondhandcars.dto.Warehouse;
 import com.garage.secondhandcars.repository.CartRepository;
 import com.garage.secondhandcars.repository.WarehouseRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 public class GarageService {
-	
+	@Autowired
     WarehouseRepository warehouserepository;
+	@Autowired
 	CartRepository cartRepository;
-	
-	public GarageService(WarehouseRepository warehouserepository,CartRepository cartRepository){
-		this.warehouserepository=warehouserepository;
-		this.cartRepository=cartRepository;
-	}
 	
 	
 	public List<Warehouse> getWarehouseDetails()
 	{	
 		System.out.println("In service");
-		List<Warehouse> warehouseList=new ArrayList<Warehouse>();
+		List<Warehouse> warehouseList=new ArrayList<>();
 		List<WarehouseDao> warehousedaoList=getAll();
-		warehousedaoList=sortOnDateAdded(warehousedaoList);
+		sortOnDateAdded(warehousedaoList);
 		System.out.println("In service retriveed Sorted list "+Objects.toString(warehousedaoList));
 			for(WarehouseDao warehousedao:warehousedaoList)
 				{	
@@ -46,7 +44,7 @@ public class GarageService {
 	// Get all cars from the h2 warehouse database.
     private List<WarehouseDao> getAll() {
         final List<WarehouseDao> warehouseDaoList = new ArrayList<>();
-        warehouserepository.findAll().forEach(warehousedao -> warehouseDaoList.add(warehousedao));
+        warehouserepository.findAll().forEach(warehouseDaoList::add);
         System.out.println(warehouseDaoList);
         return warehouseDaoList;
     }
@@ -64,7 +62,7 @@ public class GarageService {
     	
     	Cars cars=new Cars();
     	cars.setLocation(dao.getCarLocation());
-    	List <Vehicles> VehicleLst=new ArrayList<Vehicles>();
+    	List <Vehicles> vehicleLst=new ArrayList<>();
     	Vehicles vehicle=new Vehicles();
     	vehicle.setVid(dao.getCarId());
     	vehicle.setYearModel(dao.getCarYear());
@@ -73,9 +71,9 @@ public class GarageService {
     	vehicle.setMake(dao.getCarMake());
     	vehicle.setModel(dao.getCarModel());
     	vehicle.setPrice(dao.getCarPrice());
-    	VehicleLst.add(vehicle);
+    	vehicleLst.add(vehicle);
     	
-    	cars.setVehicles(VehicleLst);
+    	cars.setVehicles(vehicleLst);
     	
     	warehouse.setCars(cars);
     	
@@ -87,12 +85,12 @@ public class GarageService {
     }
 
 	public List<Vehicles> getVehiclesFromCart(List<Vehicles> vehicleList) {
-		List<CartDao> cartList= new ArrayList<CartDao>(); 
+		List<CartDao> cartList= new ArrayList<>(); 
 		for(Vehicles veh:vehicleList){
 			CartDao cart=convertDTOtoDAO(veh);
 			cartList.add(cart);
 		}
-		List<CartDao> savedCartList= new ArrayList<CartDao>();
+		List<CartDao> savedCartList;
 		System.out.println("In service list to be saved  "+Objects.toString(cartList));
 		savedCartList=getAllItems(cartList);
 		List<Vehicles> finalVehicleLst= new ArrayList<Vehicles>();
@@ -107,7 +105,7 @@ public class GarageService {
 	
 	private List<CartDao> getAllItems(List<CartDao> cartList) {
         final List<CartDao> cartDaoList = new ArrayList<>();
-        cartRepository.saveAll(cartList).forEach(warehousedao -> cartDaoList.add(warehousedao));
+        cartRepository.saveAll(cartList).forEach(cartDaoList::add);
         System.out.println(cartDaoList);
         return cartDaoList;
     }

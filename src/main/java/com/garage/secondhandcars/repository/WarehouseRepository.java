@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.garage.secondhandcars.dao.WarehouseDao;
 
-//@Repository
+@Repository
 public interface WarehouseRepository extends CrudRepository<WarehouseDao, Integer> {
 
 }
