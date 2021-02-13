@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,7 @@ import com.garage.secondhandcars.dto.Cars;
 import com.garage.secondhandcars.dto.Vehicles;
 import com.garage.secondhandcars.dto.Warehouse;
 import com.garage.secondhandcars.service.GarageService;
-
+@CrossOrigin(origins="*",allowedHeaders="*")
 @RestController
 public class GarageController {
 	
