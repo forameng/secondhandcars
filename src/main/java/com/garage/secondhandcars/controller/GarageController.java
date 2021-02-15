@@ -21,13 +21,13 @@ public class GarageController {
 	@Autowired
 	private  GarageService garageService;
 	
-	
+		//get call to get Car and warehouse details to display on overview page
 	 	@GetMapping("/warehouse")
 	    public ResponseEntity<List<Warehouse>> getWarehouseDetails() {
 	        List<Warehouse> warehouseList = garageService.getWarehouseDetails();
 	        return new ResponseEntity<>(warehouseList, HttpStatus.OK);
 	    }
-
+	 	//post call to store in cart
 	    @PostMapping(value = "/addToCart", consumes = "application/json", produces = "application/json")
 	    public ResponseEntity<List<Vehicles>> addToCart(@RequestBody List<Vehicles> vehicleList) {
 	        List<Vehicles> vehicleListResp = garageService.getVehiclesFromCart(vehicleList);

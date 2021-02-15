@@ -30,14 +30,16 @@ public class GarageService {
 	public List<Warehouse> getWarehouseDetails()
 	{	
 		List<Warehouse> warehouseList=new ArrayList<>();
+		//get details from Database
 		List<WarehouseDao> warehousedaoList=getAll();
+		//sort the details on date added
 		sortOnDateAdded(warehousedaoList);
 			for(WarehouseDao warehousedao:warehousedaoList)
 				{	
 					Warehouse warehouse=convertDAOtoDTO(warehousedao);
 					warehouseList.add(warehouse);
 				}
-			
+			//return the sorted DTO list
 		return warehouseList;
 	}
 	
