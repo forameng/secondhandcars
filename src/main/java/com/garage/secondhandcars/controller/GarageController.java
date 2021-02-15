@@ -24,14 +24,12 @@ public class GarageController {
 	
 	 	@GetMapping("/warehouse")
 	    public ResponseEntity<List<Warehouse>> getWarehouseDetails() {
-	        System.out.println("In Controller");
 	        List<Warehouse> warehouseList = garageService.getWarehouseDetails();
 	        return new ResponseEntity<>(warehouseList, HttpStatus.OK);
 	    }
 
 	    @PostMapping(value = "/addToCart", consumes = "application/json", produces = "application/json")
 	    public ResponseEntity<List<Vehicles>> addToCart(@RequestBody List<Vehicles> vehicleList) {
-	        System.out.println("In Controller");
 	        List<Vehicles> vehicleListResp = garageService.getVehiclesFromCart(vehicleList);
 	        return new ResponseEntity<>(vehicleListResp, HttpStatus.OK);
 	    }

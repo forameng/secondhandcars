@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.garage.secondhandcars.dao.CartDao;
@@ -27,11 +29,9 @@ public class GarageService {
 	
 	public List<Warehouse> getWarehouseDetails()
 	{	
-		System.out.println("In service");
 		List<Warehouse> warehouseList=new ArrayList<>();
 		List<WarehouseDao> warehousedaoList=getAll();
 		sortOnDateAdded(warehousedaoList);
-		System.out.println("In service retriveed Sorted list "+Objects.toString(warehousedaoList));
 			for(WarehouseDao warehousedao:warehousedaoList)
 				{	
 					Warehouse warehouse=convertDAOtoDTO(warehousedao);
@@ -45,7 +45,6 @@ public class GarageService {
     private List<WarehouseDao> getAll() {
         final List<WarehouseDao> warehouseDaoList = new ArrayList<>();
         warehouserepository.findAll().forEach(warehouseDaoList::add);
-        System.out.println(warehouseDaoList);
         return warehouseDaoList;
     }
     
@@ -81,6 +80,7 @@ public class GarageService {
     }
     private List<WarehouseDao> sortOnDateAdded(List<WarehouseDao> warehouseList){
     	warehouseList.sort(Comparator.comparing(WarehouseDao::getCarDateAdded));
+    	
     	return warehouseList;
     }
 
@@ -91,10 +91,8 @@ public class GarageService {
 			cartList.add(cart);
 		}
 		List<CartDao> savedCartList;
-		System.out.println("In service list to be saved  "+Objects.toString(cartList));
 		savedCartList=getAllItems(cartList);
 		List<Vehicles> finalVehicleLst= new ArrayList<Vehicles>();
-		System.out.println("In service saved list "+Objects.toString(savedCartList));
 		for(CartDao cart:savedCartList){
 			Vehicles veh=convertDAOtoDTO(cart);
 			finalVehicleLst.add(veh);
@@ -106,7 +104,6 @@ public class GarageService {
 	private List<CartDao> getAllItems(List<CartDao> cartList) {
         final List<CartDao> cartDaoList = new ArrayList<>();
         cartRepository.saveAll(cartList).forEach(cartDaoList::add);
-        System.out.println(cartDaoList);
         return cartDaoList;
     }
     private CartDao convertDTOtoDAO(Vehicles vehicle)
